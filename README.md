@@ -82,12 +82,6 @@ http://127.0.0.1:8000/chatbot
   - Une interface utilisateur simple avec Bootstrap.
   - La communication entre le frontend et le backend est gérée via JavaScript et Fetch API.
 
-## Démonstration
-Voici les captures d'écran de l'application en action :
-
-![Capture d'écran du chatbot](images/chatbotscreen.png)
-
-![Capture d'écran du chatbot](images/mobilversion.png)
 
 
 ## Contribution
@@ -106,8 +100,5 @@ Les contributions sont les bienvenues ! Veuillez suivre les étapes suivantes :
    git push origin feature/nouvelle-fonctionnalite
    ```
 5. Ouvrez une Pull Request.
-
-## Licence
-Ce projet est sous licence MIT. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.
 
 
