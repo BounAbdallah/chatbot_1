@@ -85,9 +85,9 @@ http://127.0.0.1:8000/chatbot
 ## Démonstration
 Voici les captures d'écran de l'application en action :
 
-![Capture d'écran du chatbot](public/images/chatbotscreen.png)
+![Capture d'écran du chatbot](images/chatbotscreen.png)
 
-![Capture d'écran du chatbot](public/images/mobilversion.png)
+![Capture d'écran du chatbot](images/mobilversion.png)
 
 
 ## Contribution
@@ -109,4 +109,5 @@ Les contributions sont les bienvenues ! Veuillez suivre les étapes suivantes :
 
 ## Licence
 Ce projet est sous licence MIT. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.
+
 
