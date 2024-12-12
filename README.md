@@ -1,66 +1,112 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Chatbot
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Ce projet est une application chatbot simple construite avec Laravel et une interface utilisateur en HTML/CSS utilisant Bootstrap. Le chatbot permet aux utilisateurs de poser des questions et d'obtenir des réponses préenregistrées à partir d'une base de données.
 
-## About Laravel
+## Fonctionnalités
+- Répond à des questions basées sur des correspondances exactes ou partielles.
+- Interface utilisateur intuitive pour discuter avec le chatbot.
+- Gestion des erreurs pour les cas où aucune réponse n'est trouvée.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Prérequis
+Assurez-vous d'avoir les éléments suivants installés sur votre machine :
+- PHP 8.0 ou version supérieure
+- Composer
+- Laravel Framework
+- Une base de données compatible (MySQL, SQLite, etc.)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Clonez ce dépôt :
+```bash
+git clone https://github.com/BounAbdallah/chatbot_1.git
+cd chatbot_1
+```
 
-## Learning Laravel
+2. Installez les dépendances PHP :
+```bash
+composer install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. Configurez votre fichier `.env` :
+   - Copiez le fichier `.env.example` :
+     ```bash
+     cp .env.example .env
+     ```
+   - Mettez à jour les informations de connexion à la base de données.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. Générez une clé d'application Laravel :
+```bash
+php artisan key:generate
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5. Créez la table pour les questions et réponses :
+   - Ajoutez une migration si elle n'est pas préexistante :
+     ```php
+     Schema::create('questions', function (Blueprint $table) {
+         $table->id();
+         $table->string('question');
+         $table->text('answer');
+         $table->timestamps();
+     });
+     ```
+   - Appliquez la migration :
+     ```bash
+     php artisan migrate
+     ```
 
-## Laravel Sponsors
+6. Lancez le serveur de développement :
+```bash
+php artisan serve
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+7. Accédez à l'application dans votre navigateur :
+   ```
+http://127.0.0.1:8000/chatbot
+   ```
 
-### Premium Partners
+## Utilisation
+- Tapez une question dans le champ de saisie.
+- Le chatbot recherchera une correspondance exacte ou partielle et répondra avec une réponse préenregistrée.
+- Si aucune réponse n'est trouvée, une réponse par défaut sera retournée.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Structure du Code
+### Backend
+- **Controller** : `ChatbotController`
+  - Gère la logique principale pour traiter les questions et rechercher des réponses.
+  - Deux méthodes de recherche :
+    1. `findExactMatch` : Recherche une correspondance exacte dans la base de données.
+    2. `findPartialMatch` : Recherche une correspondance partielle basée sur la similarité de texte.
 
-## Contributing
+### Frontend
+- **HTML/CSS** :
+  - Une interface utilisateur simple avec Bootstrap.
+  - La communication entre le frontend et le backend est gérée via JavaScript et Fetch API.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Démonstration
+Voici les captures d'écran de l'application en action :
 
-## Code of Conduct
+![Capture d'écran du chatbot](public/images/chatbotscreen.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![Capture d'écran du chatbot](public/images/mobilversion.png)
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Contribution
+Les contributions sont les bienvenues ! Veuillez suivre les étapes suivantes :
+1. Fork ce dépôt.
+2. Créez une nouvelle branche :
+   ```bash
+   git checkout -b feature/nouvelle-fonctionnalite
+   ```
+3. Faites vos modifications et créez un commit :
+   ```bash
+   git commit -m "Ajout d'une nouvelle fonctionnalité"
+   ```
+4. Poussez les modifications :
+   ```bash
+   git push origin feature/nouvelle-fonctionnalite
+   ```
+5. Ouvrez une Pull Request.
 
-## License
+## Licence
+Ce projet est sous licence MIT. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
